@@ -5,6 +5,7 @@ module GrapeDeviseTokenAuth
     EXPIRY_KEY = 'HTTP_EXPIRY'
     UID_KEY = 'HTTP_UID'
     CLIENT_KEY = 'HTTP_CLIENT'
+    PROVIDER_KEY = 'HTTP_PROVIDER'
 
     def initialize
       @batch_request_buffer_throttle  ||= DeviseTokenAuth.batch_request_buffer_throttle
