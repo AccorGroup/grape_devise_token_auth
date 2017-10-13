@@ -16,8 +16,8 @@ module GrapeDeviseTokenAuth
       @resource_class = mapping.to
     end
 
-    def exisiting_warden_user(resource_class)
-      warden_user =  warden.user(resource_class.to_s.underscore.to_sym)
+    def exisiting_warden_user(mapping)
+      warden_user =  warden.user(mapping)
       return unless warden_user && warden_user.tokens[@client_id].nil?
       resource = warden_user
       resource.create_new_auth_token

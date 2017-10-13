@@ -14,7 +14,7 @@ module GrapeDeviseTokenAuth
       # client id is not required
       client_id = data.client_id || 'default'
 
-      resource_from_existing_devise_user
+      resource_from_existing_devise_user(mapping)
       return resource if correct_resource_type_logged_in? &&
                          resource_does_not_have_client_token?(client_id)
 
@@ -39,8 +39,8 @@ module GrapeDeviseTokenAuth
       @user = resource_class.find_by(uid: uid, provider: provider)
     end
 
-    def resource_from_existing_devise_user
-      @resource = @devise_interface.exisiting_warden_user(resource_class)
+    def resource_from_existing_devise_user(mapping)
+      @resource = @devise_interface.exisiting_warden_user(mapping)
     end
 
     def correct_resource_type_logged_in?
