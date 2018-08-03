@@ -1,13 +1,12 @@
 module GrapeDeviseTokenAuth
   class AuthorizerData
-    attr_reader :uid, :client_id, :token, :expiry, :provider, :warden
+    attr_reader :uid, :client_id, :token, :expiry, :warden
 
-    def initialize(uid, client_id, token, expiry, provider, warden)
+    def initialize(uid, client_id, token, expiry, warden)
       @uid = uid
       @client_id = client_id
       @token = token
       @expiry = expiry
-      @provider = provider
       @warden = warden
     end
 
@@ -17,7 +16,6 @@ module GrapeDeviseTokenAuth
         env[Configuration::CLIENT_KEY] || 'default',
         env[Configuration::ACCESS_TOKEN_KEY],
         env[Configuration::EXPIRY_KEY],
-        env[Configuration::PROVIDER_KEY] || 'email',
         env['warden']
       )
     end

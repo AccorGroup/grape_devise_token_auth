@@ -15,7 +15,7 @@ module GrapeDeviseTokenAuth
 
     private
 
-    def_delegators :@data, :token, :client_id, :provider
+    def_delegators :@data, :token, :client_id
     attr_reader :request_start, :resource
 
     def batch_request?

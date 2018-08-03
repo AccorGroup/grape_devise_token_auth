@@ -19,7 +19,7 @@ module GrapeDeviseTokenAuth
                          resource_does_not_have_client_token?(client_id)
 
       return nil unless data.token_prerequisites_present?
-      load_user_from_uid_and_provider
+      load_user_from_uid
       return nil unless user_authenticated?
 
       user
@@ -29,14 +29,14 @@ module GrapeDeviseTokenAuth
 
     attr_accessor :resource_class
     attr_reader :data, :resource, :user, :devise_interface
-    def_delegators :@data, :warden, :uid, :token, :client_id, :provider
+    def_delegators :@data, :warden, :uid, :token, :client_id
 
     def user_authenticated?
       user && user.valid_token?(token, client_id)
     end
 
-    def load_user_from_uid_and_provider
-      @user = resource_class.find_by(uid: uid, provider: provider)
+    def load_user_from_uid
+      @user = resource_class.find_by_uid(uid)
     end
 
     def resource_from_existing_devise_user(mapping)
